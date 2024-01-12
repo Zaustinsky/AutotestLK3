@@ -1,32 +1,28 @@
-package all.issue3026AutsourcingUs;
+package all.issue3027ServiceSp;
 
 import all.TestBase;
-import all.issue3025TransferUs.Issue3025TransferUsMainPage;
+import all.issue3027ServiceSp.Issue3027ServiceSpMainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
-
-public class Issue3026OutsourcingUsTest extends TestBase {
+public class Issue3027ServiceSpTest extends TestBase {
 
     @Test
-    public void test3026OutsourcingUs() throws Exception {
+    public void test3027ServiceSp() throws Exception {
         //arrange
-        var page = new Issue3026AutsourcingUsMainPage(driver, wait);
+
+        var page = new Issue3027ServiceSpMainPage(driver, wait);
         page.open();
         //act
         page.issue();
-        page.issueOutsourcing.click();
         page.getSummRows();
 //        wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
+        page.typeIssue("//div[text()='Подкрепление']");
         page.insertActionDate();
-        page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
+        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
-        page.mouseOverToCassette();
-        page.addIssue.click();
+        page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
         page.parseRowsIssue();
@@ -34,7 +30,7 @@ public class Issue3026OutsourcingUsTest extends TestBase {
         page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
-        var expectedResult = "Подписано банком";
+        var expectedResult = "Подписано Банком";
 
         Assertions.assertAll(
                 ()-> Assertions.assertEquals(expectedResult, page.status.getText(), "Заявка не подписана"), //проверка на соответствие значения string статуса
@@ -43,4 +39,5 @@ public class Issue3026OutsourcingUsTest extends TestBase {
 
         page.signPopup.click();
     }
+
 }

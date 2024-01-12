@@ -65,7 +65,7 @@ public class TestBase {
     private void takeScreenshot() throws IOException{
         var sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(sourceFile, new File("screenshot.png"));
-        driver.quit();
+//        driver.quit();
 
     }
 }

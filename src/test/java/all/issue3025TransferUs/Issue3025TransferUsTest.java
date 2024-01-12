@@ -25,10 +25,10 @@ public class Issue3025TransferUsTest extends TestBase {
         page.mouseOverToCassette();
         page.addIssue.click();
         page.scribeIssue();
-        page.getSummRows();
         page.getWatchIssues();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
+        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
