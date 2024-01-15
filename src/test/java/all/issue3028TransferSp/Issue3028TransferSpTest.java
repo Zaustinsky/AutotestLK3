@@ -1,29 +1,36 @@
-package all.issue3025TransferUs;
+package all.issue3028TransferSp;
 
 import all.TestBase;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.time.Duration;
 
-public class Issue3025TransferUsTest extends TestBase {
+public class Issue3028TransferSpTest extends TestBase {
+
     @Test
-    public void test3025TransferUs() throws Exception {
+    public void test3028TransferSp() throws Exception {
         //arrange
-        var page = new Issue3025TransferUsMainPage(driver, wait);
+
+        var page = new Issue3028TransferSpMainPage(driver, wait);
         page.open();
         //act
         page.issue();
         page.getSummRows();
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
-        page.insertFromDate();
-        page.choicePointBase("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choiceBic("//div[text()=\"ALFABY2X - Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
+        page.choiceBankSender("//div[text()=\"ALFABY2X-Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
+        page.choiceDivisionSender("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
+        page.choicePointSender("//div[text()='1332 - Касса структурногго подразделения']");
         page.insertActionDate();
-        page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
-        page.textArea.sendKeys("создана автотестом!");
-        page.mouseOverToCassette();
-        page.addIssue.click();
+        page.choiceBankRecipient("//div[text()=\"ALFABY2X - Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
+        wait.until(ExpectedConditions.elementToBeClickable(page.fieldDivisionRecipient));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        page.choiceDivisionRecipient("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
+        page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
+        page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
         page.parseRowsIssue();
@@ -40,5 +47,4 @@ public class Issue3025TransferUsTest extends TestBase {
 
         page.signPopup.click();
     }
-
 }

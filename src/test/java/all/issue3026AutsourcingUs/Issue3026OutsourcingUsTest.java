@@ -1,13 +1,8 @@
 package all.issue3026AutsourcingUs;
 
 import all.TestBase;
-import all.issue3025TransferUs.Issue3025TransferUsMainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.time.Duration;
 
 public class Issue3026OutsourcingUsTest extends TestBase {
 
