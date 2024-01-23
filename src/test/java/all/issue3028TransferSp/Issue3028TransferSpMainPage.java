@@ -1,12 +1,10 @@
 package all.issue3028TransferSp;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.DateFormat;
@@ -14,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Issue3028TransferSpMainPage {
@@ -29,6 +28,15 @@ public class Issue3028TransferSpMainPage {
     }
 
     public final static String delimiter = "---------------------------------------------------";
+
+    @FindBy(css = ".ignorelink")
+    public WebElement acceptRisk;
+
+    @FindBy(xpath = "//*[text()='Подтвердить']")
+    public WebElement alertPopup;
+
+    @FindBy(tagName = "iframe")
+    public WebElement iframe;
 
     @FindBy(css = ".AuthorizationView__input")
     public WebElement login;
@@ -99,19 +107,28 @@ public class Issue3028TransferSpMainPage {
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
 
-
     public void open() {
-        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+        driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        additionally.click();
-        transition.click();
-        driver.navigate().to("https://big.lwo.by/auth");
         login.sendKeys("outbank");
         password.sendKeys("123456");
         enter.click();
-
     }
+
+    // старый метод открытия страницы с неработающими сертификатами от Касперского (стал не нужным, когда: 1) добавил в TestBase исключение для всплывающих уведомлений (сертификатов) "--disable-notifications" и 2) добавил в исключения в настройки антивируса Касперского сайт big.lwo.by)
+//    public void open() {
+//        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        additionally.click();
+//        transition.click();
+//        driver.navigate().to("https://big.lwo.by/auth");
+//        login.sendKeys("outbank");
+//        password.sendKeys("123456");
+//        enter.click();
+//
+//    }
 
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();
@@ -132,7 +149,7 @@ public class Issue3028TransferSpMainPage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    public void scrollToButtonAddFormIssue(){
+    public void scrollToButtonAddFormIssue() {
         new Actions(driver)
                 .moveToElement(scrollToPlus)
                 .moveToElement(buttonAddForm)
@@ -140,53 +157,54 @@ public class Issue3028TransferSpMainPage {
                 .perform();
     }
 
-    public void choiceBic(String xpath){
+    public void choiceBic(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBic).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
-    public void choiceBankSender(String xpath){
+    public void choiceBankSender(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBankSender).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
-    public void choiceDivisionSender(String xpath){
+    public void choiceDivisionSender(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldDivisionSender).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
-    public void choicePointSender(String xpath){
+    public void choicePointSender(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldPointSender).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
-    public void choiceBankRecipient(String xpath){
+    public void choiceBankRecipient(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBankRecipient).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
-    public void choiceDivisionRecipient(String xpath){
+    public void choiceDivisionRecipient(String xpath) {
         new Actions(driver)
-                 .moveToElement(addIssue)
-                 .moveToElement(fieldDivisionRecipient)
-                 .click()
-                 .perform();
+                .moveToElement(addIssue)
+                .moveToElement(fieldDivisionRecipient)
+                .click()
+                .perform();
 
         fieldDivisionRecipient.click();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
-    public void choicePointRecipient(String xpath){
+
+    public void choicePointRecipient(String xpath) {
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldPointRecipient).click().build().perform();
         fieldPointRecipient.click();
@@ -238,12 +256,14 @@ public class Issue3028TransferSpMainPage {
 
         }
     }
+
     public void getWatchIssues() { // раскрытие и просмотр созданной заявки
         driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-60']")).click();
         WebElement number = driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-103']/span[@class='item-itemTable__label']"));
         System.out.println("ID созданной заявки: " + number.getText());
         System.out.println(delimiter);
     }
+
     public void parseRowsIssue() {
         //парсинг строки созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='contentHeader_fixed']//div[@class='headerTable _h-60'][1]/*"));
@@ -253,6 +273,7 @@ public class Issue3028TransferSpMainPage {
         }
         System.out.println(delimiter);
     }
+
     public void parseRowsIssueAttachments() {
         //парсинг строки вложений созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='tableC nTable']//div[@class='headerTable _h-60']/*"));

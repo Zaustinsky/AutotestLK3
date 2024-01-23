@@ -20,7 +20,7 @@ public class Issue3030BetweenBanksMainPage {
 
     public WebDriver driver;
     public WebDriverWait wait;
-    private JavascriptExecutor jsExecutor;
+    public JavascriptExecutor jsExecutor;
 
     public Issue3030BetweenBanksMainPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -93,19 +93,28 @@ public class Issue3030BetweenBanksMainPage {
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
 
-
     public void open() {
-        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+        driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        additionally.click();
-        transition.click();
-        driver.navigate().to("https://big.lwo.by/auth");
         login.sendKeys("outbank");
         password.sendKeys("123456");
         enter.click();
-
     }
+
+// старый метод открытия страницы с неработающими сертификатами от Касперского (стал не нужным, когда: 1) добавил в TestBase исключение для всплывающих уведомлений (сертификатов) "--disable-notifications" и 2) добавил в исключения в настройки антивируса Касперского сайт big.lwo.by)
+//    public void open() {
+//        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        additionally.click();
+//        transition.click();
+//        driver.navigate().to("https://big.lwo.by/auth");
+//        login.sendKeys("outbank");
+//        password.sendKeys("123456");
+//        enter.click();
+//
+//    }
 
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();

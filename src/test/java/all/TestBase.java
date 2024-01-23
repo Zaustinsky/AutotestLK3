@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class TestBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    public static WebDriver driver;
+    public static WebDriverWait wait;
     public String initialWindow;
 
     public Set<String> getAllWindows(){ //метод получения всех открытых окон/вкладок
@@ -44,6 +44,8 @@ public class TestBase {
         var options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications"); // отключение всяких ругательных уведомлений браузера
+        options.setAcceptInsecureCerts(true); //Использование метода setAcceptInsecureCerts с параметром true для принятия ненадежного сертификата (для браузера Хром)
         options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE); //настройка опции по игнорированию селениумом аллерта
         driver = new ChromeDriver(options);
         initialWindow = driver.getWindowHandle(); //получение текущего окна браузера

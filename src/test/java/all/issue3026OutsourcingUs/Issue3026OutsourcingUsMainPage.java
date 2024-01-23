@@ -1,4 +1,4 @@
-package all.issue3026AutsourcingUs;
+package all.issue3026OutsourcingUs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,12 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Issue3026AutsourcingUsMainPage {
+public class Issue3026OutsourcingUsMainPage {
     public WebDriver driver;
     public WebDriverWait wait;
     private JavascriptExecutor jsExecutor;
 
-    public Issue3026AutsourcingUsMainPage(WebDriver driver, WebDriverWait wait) {
+    public Issue3026OutsourcingUsMainPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
@@ -53,6 +53,9 @@ public class Issue3026AutsourcingUsMainPage {
     @FindBy(css = ".svg-add-2")
     public WebElement buttonAddForm;
 
+    @FindBy(xpath = "//label[@for='action']/parent::div[@class='itemGroup']//div[@class='css-1rtrksz select__value-container select__value-container--has-value']")
+    public WebElement typeIssue;
+
     @FindBy(css = "#actionDate")
     public WebElement inputActionDate;
 
@@ -71,19 +74,28 @@ public class Issue3026AutsourcingUsMainPage {
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
 
-
     public void open() {
-        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+        driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        additionally.click();
-        transition.click();
-        driver.navigate().to("https://big.lwo.by/auth");
         login.sendKeys("outbank");
         password.sendKeys("123456");
         enter.click();
-
     }
+
+    // старый метод открытия страницы с неработающими сертификатами от Касперского (стал не нужным, когда: 1) добавил в TestBase исключение для всплывающих уведомлений (сертификатов) "--disable-notifications" и 2) добавил в исключения в настройки антивируса Касперского сайт big.lwo.by)
+//    public void open() {
+//        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        additionally.click();
+//        transition.click();
+//        driver.navigate().to("https://big.lwo.by/auth");
+//        login.sendKeys("outbank");
+//        password.sendKeys("123456");
+//        enter.click();
+//
+//    }
 
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();
@@ -110,6 +122,14 @@ public class Issue3026AutsourcingUsMainPage {
                 .click()
                 .perform();
     }
+
+    public void typeIssue(String xpath){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(typeIssue).click().build().perform();
+        WebElement device = driver.findElement(By.xpath(xpath));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
+    }
+
     public void insertActionDate() { //выбор даты
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();

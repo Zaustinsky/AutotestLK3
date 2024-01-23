@@ -1,26 +1,32 @@
-package all.issue3026AutsourcingUs;
+package all.issue3027ServiceSp;
 
 import all.TestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Issue3026OutsourcingUsTest extends TestBase {
+import java.util.concurrent.TimeUnit;
+
+public class Issue3027ServiceSpTestIncass extends TestBase {
 
     @Test
-    public void test3026OutsourcingUs() throws Exception {
+    public void test3027ServiceSpIncass() throws Exception {
         //arrange
-        var page = new Issue3026AutsourcingUsMainPage(driver, wait);
+
+        var page = new Issue3027ServiceSpMainPage(driver, wait);
         page.open();
         //act
         page.issue();
-        page.issueOutsourcing.click();
         page.getSummRows();
-//        wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
+        wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
+        page.typeIssue("//div[text()='Инкассация']");
         page.insertActionDate();
-        page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
+        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
-        page.mouseOverToCassette();
+        page.addAttachment();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        page.addAttachmentIncass();
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
@@ -29,7 +35,7 @@ public class Issue3026OutsourcingUsTest extends TestBase {
         page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
-        var expectedResult = "Подписано банком";
+        var expectedResult = "Подписано Банком";
 
         Assertions.assertAll(
                 ()-> Assertions.assertEquals(expectedResult, page.status.getText(), "Заявка не подписана"), //проверка на соответствие значения string статуса

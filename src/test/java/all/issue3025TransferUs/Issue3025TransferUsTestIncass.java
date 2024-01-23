@@ -1,28 +1,30 @@
-package all.issue3027ServiceSp;
+package all.issue3025TransferUs;
 
 import all.TestBase;
-import all.issue3027ServiceSp.Issue3027ServiceSpMainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Issue3027ServiceSpTest extends TestBase {
+public class Issue3025TransferUsTestIncass extends TestBase {
 
     @Test
-    public void test3027ServiceSp() throws Exception {
+    public void test3025TransferUsIncass() throws Exception { //заявка на инкассацию
         //arrange
-
-        var page = new Issue3027ServiceSpMainPage(driver, wait);
+        var page = new Issue3025TransferUsMainPage(driver, wait);
         page.open();
         //act
         page.issue();
         page.getSummRows();
-//        wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
+        wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
-        page.typeIssue("//div[text()='Подкрепление']");
+        page.typeIssue("//div[text()='Инкассация']");
+        page.insertFromDate();
+        page.choicePointBase("//div[text()='03149 - Точка инкассации клиента Несвиж']");
         page.insertActionDate();
-        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
         page.textArea.sendKeys("создана автотестом!");
-        page.addAttachment();
+        page.mouseOverToCassette();
+        page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
         page.parseRowsIssue();
@@ -30,7 +32,7 @@ public class Issue3027ServiceSpTest extends TestBase {
         page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
-        var expectedResult = "Подписано Банком";
+        var expectedResult = "Подписано банком";
 
         Assertions.assertAll(
                 ()-> Assertions.assertEquals(expectedResult, page.status.getText(), "Заявка не подписана"), //проверка на соответствие значения string статуса
@@ -39,5 +41,4 @@ public class Issue3027ServiceSpTest extends TestBase {
 
         page.signPopup.click();
     }
-
 }

@@ -2,6 +2,7 @@ package all.issue3030BetweenBanks;
 
 import all.TestBase;
 import all.issue3029Keeping.Issue3029KeepingMainPage;
+import all.issue3030BetweenBanks.Issue3030BetweenBanksMainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;

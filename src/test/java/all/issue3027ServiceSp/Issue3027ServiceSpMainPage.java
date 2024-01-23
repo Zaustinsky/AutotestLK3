@@ -75,19 +75,32 @@ public class Issue3027ServiceSpMainPage {
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
 
+    @FindBy(xpath = "//div[@class = 'group-wrapper wrapper_separator'][3]//*[text()='Добавить']")
+    public WebElement addAttachmentVyvozButton;
+
 
     public void open() {
-        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+        driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        additionally.click();
-        transition.click();
-        driver.navigate().to("https://big.lwo.by/auth");
         login.sendKeys("outbank");
         password.sendKeys("123456");
         enter.click();
-
     }
+
+    // старый метод открытия страницы с неработающими сертификатами от Касперского (стал не нужным, когда: 1) добавил в TestBase исключение для всплывающих уведомлений (сертификатов) "--disable-notifications" и 2) добавил в исключения в настройки антивируса Касперского сайт big.lwo.by)
+//    public void open() {
+//        driver.navigate().to("https://192.168.51.29:8243/ndo/outbank/1.0/user");
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        additionally.click();
+//        transition.click();
+//        driver.navigate().to("https://big.lwo.by/auth");
+//        login.sendKeys("outbank");
+//        password.sendKeys("123456");
+//        enter.click();
+//
+//    }
 
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();
@@ -141,11 +154,26 @@ public class Issue3027ServiceSpMainPage {
         driver.findElement(By.xpath("//*[text()='100']")).click(); //ввод номинала валюты
         driver.findElement(By.xpath("//input[@id='amount']")).sendKeys("1000");
         driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
-        driver.findElement(By.xpath("//*[text()='Добавить заявку']")).click(); //кнопка "Добавить заявку"
     }
 
-
-
+    public void addAttachmentIncass() {
+        WebElement motion = driver.findElement(By.xpath("//div[@class = 'group-wrapper wrapper_separator'][3]//*[text()='Добавить']")); //поиск кнопки "Добавить"
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
+        motion.click();
+        driver.findElement(By.xpath("//*[text()='Валюта']/ancestor::div[@class='itemGroup']//div[@class='css-1rtrksz select__value-container select__value-container--has-value']")).click(); //xpath к полю "номинал валюты";
+//        driver.findElement(By.xpath("//*[text()='BYN']")).click(); //ввод номинала валюты
+        driver.findElement(By.xpath("//input[@id='sum']")).sendKeys("150000");
+        driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
+    }
+    public void addAttachmentVyvoz() {
+        WebElement motion = driver.findElement(By.xpath("//*[text()='Добавить']")); //поиск кнопки "Добавить"
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
+        motion.click();
+        driver.findElement(By.xpath("//*[text()='Валюта']/ancestor::div[@class='itemGroup']//div[@class='css-1rtrksz select__value-container select__value-container--has-value']")).click(); //xpath к полю "номинал валюты";
+//        driver.findElement(By.xpath("//*[text()='BYN']")).click(); //ввод номинала валюты
+        driver.findElement(By.xpath("//input[@id='sum']")).sendKeys("150000");
+        driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
+    }
 
     public void scribeIssue() throws Exception { // подписание заявки
         driver.findElement(By.xpath("//div[@id='root']/div/header/div[3]/div[2]/div/div/div[3]/button")).click(); //очистить

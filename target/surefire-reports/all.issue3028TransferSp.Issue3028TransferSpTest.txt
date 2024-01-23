@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: all.issue3028TransferSp.Issue3028TransferSpTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec <<< FAILURE!
+all.issue3028TransferSp.Issue3028TransferSpTest.test3028TransferSp()  Time elapsed: 0.008 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.navigate()" because "this.driver" is null
+	at all.issue3028TransferSp.Issue3028TransferSpMainPage.open(Issue3028TransferSpMainPage.java:111)
+	at all.issue3028TransferSp.Issue3028TransferSpTest.test3028TransferSp(Issue3028TransferSpTest.java:18)
+

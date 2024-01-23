@@ -1,37 +1,29 @@
-package all.issue3028TransferSp;
+package all.issue3026OutsourcingUs;
 
 import all.TestBase;
-import all.issue3028TransferSp.Issue3028TransferSpMainPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
-
-public class Issue3028TransferSpTest extends TestBase {
+public class Issue3026OutsourcingUsTestLoad extends TestBase { //заявка на загрузку
 
     @Test
-    public void test3028TransferSp() throws Exception {
+    public void test3026OutsourcingUsLoad() throws Exception {
         //arrange
-
-        var page = new Issue3028TransferSpMainPage(driver, wait);
+        var page = new Issue3026OutsourcingUsMainPage(driver, wait);
         page.open();
         //act
         page.issue();
+        page.issueOutsourcing.click();
         page.getSummRows();
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
-        page.choiceBic("//div[text()=\"ALFABY2X - Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
-        page.choiceBankSender("//div[text()=\"ALFABY2X-Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
-        page.choiceDivisionSender("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
-        page.choicePointSender("//div[text()='1332 - Касса структурногго подразделения']");
+        page.typeIssue("//div[text()='Загрузка']");
         page.insertActionDate();
-        page.choiceBankRecipient("//div[text()=\"ALFABY2X - Г.MИHCK, ЗAO 'Альфа-Банк'\"]");
-        wait.until(ExpectedConditions.elementToBeClickable(page.fieldDivisionRecipient));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        page.choiceDivisionRecipient("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
-        page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
-        page.addAttachment();
+        page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
+        page.textArea.sendKeys("создана автотестом!");
+        page.mouseOverToCassette();
+        page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
         page.parseRowsIssue();

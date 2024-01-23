@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: all.issue3029Keeping.Issue3029KeepingTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec <<< FAILURE!
+all.issue3029Keeping.Issue3029KeepingTest.test3029Keeping()  Time elapsed: 0.005 sec  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.navigate()" because "this.driver" is null
+	at all.issue3029Keeping.Issue3029KeepingMainPage.open(Issue3029KeepingMainPage.java:85)
+	at all.issue3029Keeping.Issue3029KeepingTest.test3029Keeping(Issue3029KeepingTest.java:15)
+
