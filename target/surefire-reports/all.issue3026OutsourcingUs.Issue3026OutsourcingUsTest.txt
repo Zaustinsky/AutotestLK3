@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: all.issue3026OutsourcingUs.Issue3026OutsourcingUsTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
-all.issue3026OutsourcingUs.Issue3026OutsourcingUsTest.test3026OutsourcingUs()  Time elapsed: 0 sec  <<< FAILURE!
-java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.navigate()" because "this.driver" is null
-	at all.issue3026OutsourcingUs.Issue3026OutsourcingUsMainPage.open(Issue3026OutsourcingUsMainPage.java:75)
-	at all.issue3026OutsourcingUs.Issue3026OutsourcingUsTest.test3026OutsourcingUs(Issue3026OutsourcingUsTest.java:14)
-

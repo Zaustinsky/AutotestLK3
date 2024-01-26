@@ -27,9 +27,9 @@ public class Issue3025TransferUsTestIncass extends TestBase {
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";

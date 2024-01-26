@@ -26,8 +26,8 @@ public class Issue3025TransferUSTestUnload extends TestBase {
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
-        page.parseRowsIssue();
         page.getSummRows();
+        page.parseRowsIssue();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";

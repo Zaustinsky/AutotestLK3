@@ -34,9 +34,10 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
+
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -69,9 +70,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -103,8 +104,8 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
-        page.parseRowsIssue();
         page.getSummRows();
+        page.parseRowsIssue();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -135,9 +136,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -169,9 +170,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -202,8 +203,8 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
-        page.parseRowsIssue();
         page.getSummRows();
+        page.parseRowsIssue();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -234,9 +235,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано Банком";
@@ -270,9 +271,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
 //        page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано Банком";
@@ -304,9 +305,9 @@ public class Test extends TestBase{
         page.addIssue.click();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано Банком";
@@ -342,9 +343,9 @@ public class Test extends TestBase{
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -377,9 +378,9 @@ public class Test extends TestBase{
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -412,9 +413,9 @@ public class Test extends TestBase{
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -447,9 +448,9 @@ public class Test extends TestBase{
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
@@ -484,9 +485,9 @@ public class Test extends TestBase{
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
+        page.getSummRows();
         page.parseRowsIssue();
         page.parseRowsIssueAttachments();
-        page.getSummRows();
         //assert
         var expectedResultSign = "Подпись прошла успешно";
         var expectedResult = "Подписано банком";
