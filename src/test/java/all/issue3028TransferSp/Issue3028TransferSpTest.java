@@ -31,6 +31,7 @@ public class Issue3028TransferSpTest extends TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         page.choiceDivisionRecipient("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
+        page.textArea.sendKeys("Создана автотестом!");
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();

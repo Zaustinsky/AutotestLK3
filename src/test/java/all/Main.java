@@ -17,7 +17,7 @@ public class Main extends TestBase{
         test.test3027ServiceSpIncass(); //инкассация
         test.test3027ServiceSpLoad(); //Подкрепление
         test.test3027ServiceSpUnload(); //Вывоз
-//        Перевозка между СП
+        //Перевозка между СП
         test.test3028TransferSp();
         //Хранение
         test.test3029KeepingInStorage(); //с вложением в хранилище

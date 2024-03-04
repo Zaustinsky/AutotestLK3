@@ -26,7 +26,7 @@ public class Test extends TestBase{
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
         page.insertFromDate();
-        page.choicePointBase("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointBase("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertActionDate();
         page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
         page.textArea.sendKeys("создана автотестом!");
@@ -62,7 +62,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.typeIssue("//div[text()='Инкассация']");
         page.insertFromDate();
-        page.choicePointBase("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointBase("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertActionDate();
         page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
         page.textArea.sendKeys("создана автотестом!");
@@ -99,7 +99,7 @@ public class Test extends TestBase{
         page.insertActionDate();
         page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
         page.insertDeliveryDate();
-        page.choicePointBase("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointBase("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
         page.addIssue.click();
         page.scribeIssue();
@@ -229,7 +229,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.typeIssue("//div[text()='Подкрепление']");
         page.insertActionDate();
-        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePoint("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
         page.addAttachment();
         page.addIssue.click();
@@ -263,7 +263,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.typeIssue("//div[text()='Инкассация']");
         page.insertActionDate();
-        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePoint("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
         page.addAttachment();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -299,7 +299,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.typeIssue("//div[text()='Вывоз']");
         page.insertActionDate();
-        page.choicePoint("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePoint("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.textArea.sendKeys("создана автотестом!");
         page.addAttachmentVyvoz();
         page.addIssue.click();
@@ -340,6 +340,7 @@ public class Test extends TestBase{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         page.choiceDivisionRecipient("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
+        page.textArea.sendKeys("Создана автотестом!");
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
@@ -371,7 +372,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.choiceTypeIssue("//div[text()='Хранение с вложением в хранилище']");
         page.insertFromDate();
-        page.choicePointSender("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointSender("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertToDate();
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
         page.textArea.sendKeys("Создана автотестом!");
@@ -406,7 +407,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.choiceTypeIssue("//div[text()='Изъятие ценностей, ранее принятых на хранение']");
         page.insertFromDate();
-        page.choicePointSender("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointSender("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertToDate();
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
         page.textArea.sendKeys("Создана автотестом!");
@@ -441,7 +442,7 @@ public class Test extends TestBase{
         page.scrollToButtonAddFormIssue();
         page.choiceTypeIssue("//div[text()='Хранение под ответственностью с перевозкой']");
         page.insertFromDate();
-        page.choicePointSender("//div[text()='03149 - Точка инкассации клиента Несвиж']");
+        page.choicePointSender("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertToDate();
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
         page.textArea.sendKeys("Создана автотестом!");
