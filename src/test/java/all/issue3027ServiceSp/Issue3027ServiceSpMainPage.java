@@ -1,5 +1,6 @@
 package all.issue3027ServiceSp;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -78,7 +79,7 @@ public class Issue3027ServiceSpMainPage {
     @FindBy(xpath = "//div[@class = 'group-wrapper wrapper_separator'][3]//*[text()='Добавить']")
     public WebElement addAttachmentVyvozButton;
 
-
+    @Step
     public void open() {
         driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
@@ -102,6 +103,7 @@ public class Issue3027ServiceSpMainPage {
 //
 //    }
 
+    @Step
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();
         List<WebElement> optionsList = driver.findElements(By.xpath("//div[@class='tableListItems_group_wrapper']/*"));
@@ -115,11 +117,14 @@ public class Issue3027ServiceSpMainPage {
         System.out.println("Количество созданных заявок: " + countDown); //отбор нужного количества строк с одинаковым значением атрибута class + получение их общей суммы
         System.out.println(delimiter);
     }
+
+    @Step
     public void issue() { //вкладка подзаявки из вкладки "Заявки"
         issueServiceSp.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
+    @Step
     public void scrollToButtonAddFormIssue(){
         new Actions(driver)
                 .moveToElement(scrollToPlus)
@@ -128,24 +133,31 @@ public class Issue3027ServiceSpMainPage {
                 .perform();
     }
 
+    @Step
     public void typeIssue(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(typeIssue).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
+
+    @Step
     public void insertActionDate() { //выбор даты
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
         String output = dateFormat.format(date);
         inputActionDate.sendKeys(output);
     }
+
+    @Step
     public void choicePoint(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(pointId).click().build().perform();
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
+
+    @Step
     public void addAttachment() {
         WebElement motion = driver.findElement(By.xpath("//*[text()='Добавить']")); //поиск кнопки "Добавить"
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
@@ -156,6 +168,7 @@ public class Issue3027ServiceSpMainPage {
         driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
     }
 
+    @Step
     public void addAttachmentIncass() {
         WebElement motion = driver.findElement(By.xpath("//div[@class = 'group-wrapper wrapper_separator'][3]//*[text()='Добавить']")); //поиск кнопки "Добавить"
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
@@ -165,6 +178,8 @@ public class Issue3027ServiceSpMainPage {
         driver.findElement(By.xpath("//input[@id='sum']")).sendKeys("150000");
         driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
     }
+
+    @Step
     public void addAttachmentVyvoz() {
         WebElement motion = driver.findElement(By.xpath("//*[text()='Добавить']")); //поиск кнопки "Добавить"
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
@@ -175,6 +190,7 @@ public class Issue3027ServiceSpMainPage {
         driver.findElement(By.xpath("//*[text()='Добавить Вложение']")).click(); //кнопка "Добавить вложение";
     }
 
+    @Step
     public void scribeIssue() throws Exception { // подписание заявки
         driver.findElement(By.xpath("//div[@id='root']/div/header/div[3]/div[2]/div/div/div[3]/button")).click(); //очистить
         driver.findElement(By.xpath("//div[@class='wrapper-drop']")).click(); //клик по менюшке для вызова меню подписания
@@ -196,12 +212,16 @@ public class Issue3027ServiceSpMainPage {
 
         }
     }
+
+    @Step
     public void getWatchIssues() { // раскрытие и просмотр созданной заявки
         driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-60']")).click();
         WebElement number = driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-103']/span[@class='item-itemTable__label']"));
         System.out.println("ID созданной заявки: " + number.getText());
         System.out.println(delimiter);
     }
+
+    @Step
     public void parseRowsIssue() {
         //парсинг строки созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='contentHeader_fixed']//div[@class='headerTable _h-60'][1]/*"));
@@ -211,6 +231,8 @@ public class Issue3027ServiceSpMainPage {
         }
         System.out.println(delimiter);
     }
+
+    @Step
     public void parseRowsIssueAttachments() {
         //парсинг строки вложений созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='tableC nTable']//div[@class='headerTable _h-60']/*"));

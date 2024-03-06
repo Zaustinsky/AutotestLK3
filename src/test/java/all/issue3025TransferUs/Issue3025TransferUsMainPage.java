@@ -1,5 +1,6 @@
 package all.issue3025TransferUs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -83,6 +84,7 @@ import java.util.concurrent.TimeUnit;
         @FindBy(css = ".event_block__item_content")
         public WebElement signPopup;
 
+        @Step("Переход на страницу авторизации ЛК")
         public void open() {
             driver.navigate().to("https://big.lwo.by/auth");
             driver.manage().window().maximize();
@@ -106,6 +108,7 @@ import java.util.concurrent.TimeUnit;
 //
 //    }
 
+        @Step("Получение общего количества ранее созданных заявок")
         public void getSummRows() {
             //WebDriver driver = DriverFactory.getWebDriver();
             List<WebElement> optionsList = driver.findElements(By.xpath("//div[@class='tableListItems_group_wrapper']/*"));
@@ -119,11 +122,14 @@ import java.util.concurrent.TimeUnit;
             System.out.println("Количество созданных заявок: " + countDown); //отбор нужного количества строк с одинаковым значением атрибута class + получение их общей суммы
             System.out.println(delimiter);
         }
+
+        @Step("Клик по меню 'Заявки'")
         public void issue() { //вкладка "Заявки"
             issue.click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         }
 
+        @Step("Наведение курсором на элемент открытия формы заявки")
         public void scrollToButtonAddFormIssue(){
             new Actions(driver)
                     .moveToElement(scrollToPlus)
@@ -132,6 +138,7 @@ import java.util.concurrent.TimeUnit;
                     .perform();
         }
 
+        @Step("Выбор УС")
         public void typeIssue(String xpath){
             Actions actions = new Actions(driver);
             actions.moveToElement(typeIssue).click().build().perform();
@@ -139,36 +146,47 @@ import java.util.concurrent.TimeUnit;
             ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
         }
 
+        @Step("Выбор даты")
         public void insertFromDate() { //выбор даты
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date date = new Date();
             String output = dateFormat.format(date);
             inputFromDate.sendKeys(output);
         }
+
+        @Step("Выбор точки инкассации")
         public void choicePointBase(String xpath){
             Actions actions = new Actions(driver);
             actions.moveToElement(pointBase).click().build().perform();
             WebElement device = driver.findElement(By.xpath(xpath));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
         }
+
+        @Step("Выбор даты исполнения")
         public void insertActionDate() { //выбор даты
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date date = new Date();
             String output = dateFormat.format(date);
             inputActionDate.sendKeys(output);
         }
+
+        @Step("Выбор устройства самообслуживания")
         public void choiceSst(String xpath){
             Actions actions = new Actions(driver);
             actions.moveToElement(sst).click().build().perform();
             WebElement device = driver.findElement(By.xpath(xpath));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
         }
+
+        @Step("Выбор даты отправки")
         public void insertDeliveryDate() { //выбор даты
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Date date = new Date();
             String output = dateFormat.format(date);
             inputDeliveryDate.sendKeys(output);
         }
+
+        @Step("Редактирование вложений кассет")
         public void mouseOverToCassette() { //заполнение кассет ДН
             WebElement motion1 = driver.findElement(By.xpath("//div[@class='itemActionBlock']")); //кассета 1
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion1); //скрол вниз на невидимый элемент
@@ -191,6 +209,8 @@ import java.util.concurrent.TimeUnit;
             driver.findElement(By.xpath("//input[@id='amount']")).sendKeys("1000");
             driver.findElement(By.cssSelector("._button2")).click();
         }
+
+        @Step("Подписание заявки")
         public void scribeIssue() throws Exception { // подписание заявки
             driver.findElement(By.xpath("//div[@id='root']/div/header/div[3]/div[2]/div/div/div[3]/button")).click(); //очистить
             driver.findElement(By.xpath("//div[@class='wrapper-drop']")).click(); //клик по менюшке для вызова меню подписания
@@ -213,12 +233,15 @@ import java.util.concurrent.TimeUnit;
             }
         }
 
+        @Step("Просмотр созданной заявки")
         public void getWatchIssues() { // раскрытие и просмотр созданной заявки
             driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-60']")).click();
             WebElement number = driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-103']/span[@class='item-itemTable__label']"));
             System.out.println("ID созданной заявки: " + number.getText());
             System.out.println(delimiter);
         }
+
+        @Step("Парсинг строк по созданным данным заявки")
         public void parseRowsIssue() {
             //парсинг строки созданной заявки (вывод соответствия полей: наименование и значение)
             List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='contentHeader_fixed']//div[@class='headerTable _h-60'][1]/*"));
@@ -228,6 +251,8 @@ import java.util.concurrent.TimeUnit;
             }
             System.out.println(delimiter);
         }
+
+        @Step("Парсинг строк по созданным данным вложения к заявке")
         public void parseRowsIssueAttachments() {
             //парсинг строки вложений созданной заявки (вывод соответствия полей: наименование и значение)
             List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='tableC nTable']//div[@class='headerTable _h-60']/*"));

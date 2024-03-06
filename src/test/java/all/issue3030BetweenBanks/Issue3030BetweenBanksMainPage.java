@@ -1,5 +1,6 @@
 package all.issue3030BetweenBanks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -93,6 +94,7 @@ public class Issue3030BetweenBanksMainPage {
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
 
+    @Step
     public void open() {
         driver.navigate().to("https://big.lwo.by/auth");
         driver.manage().window().maximize();
@@ -116,6 +118,7 @@ public class Issue3030BetweenBanksMainPage {
 //
 //    }
 
+    @Step
     public void getSummRows() {
         //WebDriver driver = DriverFactory.getWebDriver();
         List<WebElement> optionsList = driver.findElements(By.xpath("//div[@class='tableListItems_group_wrapper']/*"));
@@ -130,11 +133,13 @@ public class Issue3030BetweenBanksMainPage {
         System.out.println(delimiter);
     }
 
+    @Step
     public void issue() { //вкладка подзаявки из вкладки "Заявки"
         issueBetweenBanks.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
+    @Step
     public void scrollToButtonAddFormIssue(){
         new Actions(driver)
                 .moveToElement(scrollToPlus)
@@ -143,6 +148,7 @@ public class Issue3030BetweenBanksMainPage {
                 .perform();
     }
 
+    @Step
     public void choiceBic(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBic).click().build().perform();
@@ -150,6 +156,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void choiceBankSender(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBankSender).click().build().perform();
@@ -157,6 +164,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void choiceDivisionSender(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldDivisionSender).click().build().perform();
@@ -164,6 +172,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void choicePointSender(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldPointSender).click().build().perform();
@@ -171,6 +180,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void choiceBankRecipient(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldBankRecipient).click().build().perform();
@@ -178,6 +188,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void choiceDivisionRecipient(String xpath){
         new Actions(driver)
                 .moveToElement(addIssue)
@@ -188,6 +199,8 @@ public class Issue3030BetweenBanksMainPage {
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
+
+    @Step
     public void choicePointRecipient(String xpath){
         Actions actions = new Actions(driver);
         actions.moveToElement(fieldPointRecipient).click().build().perform();
@@ -195,6 +208,7 @@ public class Issue3030BetweenBanksMainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
     }
 
+    @Step
     public void insertActionDate() { //выбор даты вложения
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
@@ -202,6 +216,7 @@ public class Issue3030BetweenBanksMainPage {
         inputActionDate.sendKeys(output);
     }
 
+    @Step
     public void addAttachment() {
         WebElement motion = driver.findElement(By.xpath("//*[text()='Добавить']")); //поиск кнопки "Добавить"
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", motion); //скрол вниз на невидимый элемент
@@ -217,6 +232,7 @@ public class Issue3030BetweenBanksMainPage {
         driver.findElement(By.xpath("//*[text()='Добавить заявку']")).click(); //кнопка "Добавить заявку"
     }
 
+    @Step
     public void scribeIssue() throws Exception { // подписание заявки
         driver.findElement(By.xpath("//div[@id='root']/div/header/div[3]/div[2]/div/div/div[3]/button")).click(); //очистить
         driver.findElement(By.xpath("//div[@class='wrapper-drop']")).click(); //клик по менюшке для вызова меню подписания
@@ -238,12 +254,16 @@ public class Issue3030BetweenBanksMainPage {
 
         }
     }
+
+    @Step
     public void getWatchIssues() { // раскрытие и просмотр созданной заявки
         driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-60']")).click();
         WebElement number = driver.findElement(By.xpath("//div[@class='item-itemTable _widthCell-5-103']/span[@class='item-itemTable__label']"));
         System.out.println("ID созданной заявки: " + number.getText());
         System.out.println(delimiter);
     }
+
+    @Step
     public void parseRowsIssue() {
         //парсинг строки созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='contentHeader_fixed']//div[@class='headerTable _h-60'][1]/*"));
@@ -253,6 +273,8 @@ public class Issue3030BetweenBanksMainPage {
         }
         System.out.println(delimiter);
     }
+
+    @Step
     public void parseRowsIssueAttachments() {
         //парсинг строки вложений созданной заявки (вывод соответствия полей: наименование и значение)
         List<WebElement> headerColumns = driver.findElements(By.xpath("//div[@class='tableC nTable']//div[@class='headerTable _h-60']/*"));
