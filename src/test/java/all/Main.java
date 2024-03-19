@@ -8,9 +8,11 @@ import all.issue3029Keeping.Issue3029KeepingMainPage;
 import all.issue3030BetweenBanks.Issue3030BetweenBanksMainPage;
 import com.google.common.util.concurrent.AbstractExecutionThreadService;
 import io.qameta.allure.*;
+import jdk.jfr.Configuration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
@@ -53,6 +55,7 @@ public class Main extends TestBase{
         page.getSummRows();
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
+        wait.until(ExpectedConditions.visibilityOf(page.typeIssue));
         page.typeIssue("//div[text()='Инкассация']");
         page.insertFromDate();
         page.choicePointBase("//div[text()='03127 - Точка инкассации клиента Несвиж']");
@@ -106,6 +109,8 @@ public class Main extends TestBase{
         page.getSummRows();
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
+        wait.until(ExpectedConditions.visibilityOf(page.typeIssue));
+        page.typeIssue("//div[text()='Загрузка']");
         page.insertFromDate();
         page.choicePointBase("//div[text()='03127 - Точка инкассации клиента Несвиж']");
         page.insertActionDate();
@@ -158,6 +163,7 @@ public class Main extends TestBase{
         page.getSummRows();
         wait.until(ExpectedConditions.visibilityOf(page.scrollToPlus));
         page.scrollToButtonAddFormIssue();
+        wait.until(ExpectedConditions.visibilityOf(page.typeIssue));
         page.typeIssue("//div[text()='Выгрузка']");
         page.insertActionDate();
         page.choiceSst("//div[text()='1234-Минская обл., Несвижский р-н., г. Несвиж, ул. Сосновая, 78']");
@@ -518,7 +524,7 @@ public class Main extends TestBase{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         page.choiceDivisionRecipient("//div[text()='9 - 9 Центральный аппарат Дзержинск']");
         page.choicePointRecipient("//div[text()='03152 - УХ Альфа-Банк']");
-        page.textArea.sendKeys("Создана автотестом!");
+        page.textArea.sendKeys("создана автотестом!");
         page.addAttachment();
         page.scribeIssue();
         page.getWatchIssues();
@@ -705,7 +711,9 @@ public class Main extends TestBase{
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         page.choiceDivisionRecipient("//div[text()='11111111 - Филиал №111111 Беларусбанк']");
         page.choicePointRecipient("//div[text()='08100 - Касса']");
+        page.textArea.sendKeys("создана автотестом!");
         page.addAttachment();
+        wait.until(ExpectedConditions.elementToBeClickable(page.scrollToPlus));
         page.scribeIssue();
         page.getWatchIssues();
         page.getSummRows();

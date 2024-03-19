@@ -40,7 +40,7 @@ public class TestBase {
 //        driver = new FirefoxDriver();
 //        new WebDriverWait(driver, 5);
 //        wait = new WebDriverWait(driver, 10);
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver120.exe");
+        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver122.exe");
         var options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--remote-allow-origins=*");

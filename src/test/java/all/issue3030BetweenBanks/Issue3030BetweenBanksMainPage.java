@@ -1,10 +1,7 @@
 package all.issue3030BetweenBanks;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,12 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Issue3030BetweenBanksMainPage {
 
-    public WebDriver driver;
+    public static WebDriver driver;
     public WebDriverWait wait;
     public JavascriptExecutor jsExecutor;
 
     public Issue3030BetweenBanksMainPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
+        Issue3030BetweenBanksMainPage.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
@@ -93,6 +90,9 @@ public class Issue3030BetweenBanksMainPage {
 
     @FindBy(css = ".event_block__item_content")
     public WebElement signPopup;
+
+    @FindBy(css = "textarea._w-500")
+    public WebElement textArea;
 
     @Step
     public void open() {
@@ -198,6 +198,17 @@ public class Issue3030BetweenBanksMainPage {
 
         WebElement device = driver.findElement(By.xpath(xpath));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", device); //JS скрипт клик элемента
+    }
+
+    @Step
+    public void reduceFontSize(){
+        new Actions(driver)
+                .sendKeys(Keys.chord(Keys.CONTROL, "-"))
+
+//        Actions builder = new Actions(driver);
+//        builder.sendKeys(Keys.chord(Keys.CONTROL, "-"))
+                .perform();
+
     }
 
     @Step
